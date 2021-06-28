@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+ <h1>Bar chart</h1>
+  <canvas class='chart' data-donators={{donatorsJson}} data-total-amount={{totalAmountJson}} id="myChart" width="100" height="50"></canvas>
+
+{% endblock %}
