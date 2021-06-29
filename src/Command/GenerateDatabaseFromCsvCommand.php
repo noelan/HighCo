@@ -26,7 +26,12 @@ class GenerateDatabaseFromCsvCommand extends Command
     
     private string $dataDirectory;
 
-    public function __construct(UserRepository $userRepository, TransactionRepository $transactionRepository, Connection $connection, string $dataDirectory)
+
+    public function __construct(
+        UserRepository $userRepository, 
+        TransactionRepository $transactionRepository, 
+        Connection $connection, 
+        string $dataDirectory)
     {
         parent::__construct();
         $this->transactionRepository = $transactionRepository;
@@ -52,7 +57,7 @@ class GenerateDatabaseFromCsvCommand extends Command
 
     private function updateDatabase(): void
     {
-        // $this->clearDb();
+        $this->clearDb();
         // $this->setMaxAllowedPacket();
         $this->transactionRepository->createTable();
         $this->userRepository->createTable();
@@ -110,6 +115,7 @@ class GenerateDatabaseFromCsvCommand extends Command
     }
 
     private function clearDb() {
-        $this->pdo->exec("DROP DATABASE highco");
+        $this->pdo->exec("DELETE FROM transaction");
+        $this->pdo->exec("DELETE FROM user");
     }
 }
