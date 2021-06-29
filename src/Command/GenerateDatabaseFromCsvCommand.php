@@ -57,10 +57,10 @@ class GenerateDatabaseFromCsvCommand extends Command
 
     private function updateDatabase(): void
     {
-        $this->clearDb();
         // $this->setMaxAllowedPacket();
         $this->transactionRepository->createTable();
         $this->userRepository->createTable();
+        $this->clearDb();
         $this->getDataFromCsv();
     }
 
