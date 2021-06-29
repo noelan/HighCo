@@ -22,6 +22,6 @@ You can run in mysql
 
 `SET GLOBAL max_allowed_packet=1073741824;`  
 
-Or you can **uncomment** the line 56 in **src/Command/GenerateDatabaseFromCsvCommand.php** 
+Or you can **uncomment** the line 60 in **src/Command/GenerateDatabaseFromCsvCommand.php** 
 and run  
 `symfony console app:update-db`
