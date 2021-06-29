@@ -53,6 +53,7 @@ class GenerateDatabaseFromCsvCommand extends Command
     private function updateDatabase(): void
     {
         // $this->clearDb();
+        // $this->setMaxAllowedPacket();
         $this->transactionRepository->createTable();
         $this->userRepository->createTable();
         $this->getDataFromCsv();
@@ -102,6 +103,10 @@ class GenerateDatabaseFromCsvCommand extends Command
      /* Format a row for sql query */
      private function formatRowForUser($row): string {
         return '(' . $row['Tel'] . ','  . $row['Code postal'] . ",'"  . $row['Date'] . "')";
+    }
+
+    private function setMaxAllowedPacket() {
+        $this->pdo->query('SET @@global.max_allowed_packet = ' . 500 * 1024 * 1024 );
     }
 
     private function clearDb() {
